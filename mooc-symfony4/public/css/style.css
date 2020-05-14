@@ -21,3 +21,9 @@
     max-height:100%;
     cursor: pointer;
 }
+
+#hs_difficulty{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
