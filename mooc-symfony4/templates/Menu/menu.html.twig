@@ -1,0 +1,15 @@
+{% extends "layout.html.twig" %}
+
+{% block head %}
+    <title>Menu - Memory</title>
+{% endblock %}
+
+{% block content %}
+
+    <h3 class="text-center m-b-5">Faites un choix :</h3>
+    <nav>
+        <div class="text-center m-3"><a href="{{ url('app_newgame') }}" class="menu-link">Nouvelle Partie</a></div>
+        <div class="text-center m-3"><a href="" class="menu-link">Highscore</a></div>
+    </nav>
+
+{% endblock %}

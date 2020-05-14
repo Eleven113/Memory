@@ -1,0 +1,23 @@
+.menu-link{
+    font-size: 2vw;
+}
+
+.menu-link:link,
+.menu-link:visited,
+.menu-link:focus,
+.menu-link:hover,
+.menu-link:active{
+    color: #007bff;
+    text-decoration: none;
+    cursor : pointer;
+}
+
+.card_div{
+    height: 191px;
+}
+
+.card_img{
+    max-width:100%;
+    max-height:100%;
+    cursor: pointer;
+}

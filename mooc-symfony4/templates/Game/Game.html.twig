@@ -1,0 +1,51 @@
+{% extends "layout.html.twig" %}
+
+{% block head %}
+    <title>Jeu - Memory</title>
+{% endblock %}
+
+{% block content %}
+
+    <h3 class="text-center m-4">{{ username }} joue avec les
+        {% if theme == 'animals' %}
+            animaux
+        {% elseif theme == 'monsters' %}
+            monstres
+        {% elseif theme == 'music' %}
+            instruments de musique
+        {% endif %}
+        en mode
+        {% if cardnumb == 6 %}
+            facile
+        {% elseif cardnumb == 12 %}
+            moyen
+        {% elseif cardnumb == 18 %}
+            difficile
+        {% endif %}
+    </h3>
+
+    <div id="gameinfo" class="d-flex flex-row justify-around mb-3">
+        <div id="gameinfo_try" class="text-center col-5">
+            <span id="gameinfo_try-txt">Essai(s) : </span>
+            <span id="gameinfo_try-numb"> 0 </span>
+        </div>
+        <div id="gameinfo_time" class="text-center col-5">
+            <span id="gameinfo_time-txt">Temps : </span>
+            <span id="gameinfo_time-numb"> 0 </span>
+        </div>
+    </div>
+
+    <div id="cards" class="row">
+        {%  for i in 1 .. cardnumb %}
+            <div id="card_{{ loop.index }}" class="card_div col-2 mb-3" ><img src="{{ asset('img/card.png') }}" class="card_img"></div>
+        {%  endfor %}
+    </div>
+
+    {% for card in cards %}
+        {{ card }}
+    {% endfor %}
+{% endblock %}
+
+{% block script %}
+    <script src="{{ asset('js/timer.js') }}"></script>
+{% endblock %}

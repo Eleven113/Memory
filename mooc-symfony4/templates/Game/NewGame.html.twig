@@ -1,0 +1,36 @@
+{% extends "layout.html.twig" %}
+
+{% block head %}
+    <title>Nouvelle Partie - Memory</title>
+{% endblock %}
+
+{% block content %}
+
+    <div id="newgame_form_content" class="d-flex flex-column justify-content-center align-items-center mt-2">
+        <form id="newgame-form" class="col-lg-6" action="{{ url('app_game') }}"  method="post">
+            <legend>Nouvelle Partie</legend>
+            <div class="form-group mt-3">
+                <label for="newgame_username" class="form_label">Joueur</label>
+                <input id="newgame_username" type="text" name="username" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="newgame_cardnumb" class="form_label">Difficulté</label>
+                <select id="newgame_cardnumb" name="cardnumb" class="form-control">
+                    <option value="6">Facile</option>
+                    <option value="12">Moyen</option>
+                    <option value="18">Difficile</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="newgame_theme" class="form_label">Thème</label>
+                <select id="newgame_theme" name="theme" class="form-control">
+                    <option value="animals">Animaux</option>
+                    <option value="monsters">Monstres</option>
+                    <option value="music">Instruments de musique</option>
+                </select>
+            </div>
+            <button id="newgame_submit" type="submit" class="btn btn-primary mt-3"><i class="fas fa-check-circle"></i>&nbsp;&nbsp;Jouer</button>
+        </form>
+    </div>
+
+{% endblock %}
