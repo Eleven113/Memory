@@ -6,22 +6,28 @@
 
 {% block content %}
 
-    <h3 class="text-center m-4">{{ username }} joue avec les
-        {% if theme == 'animals' %}
+    <h3 class="text-center m-4">{{ memory.players[memory.player] }} joue avec les
+        {% switch memory.theme %}
+        {% case 'animals' %}
             animaux
-        {% elseif theme == 'monsters' %}
+        {% case 'monsters' %}
             monstres
-        {% elseif theme == 'music' %}
+        {% case 'music' %}
             instruments de musique
-        {% endif %}
+        {% default %}
+            {{ "<thème inconnu>"|e }}
+        {% endswitch %}
         en mode
-        {% if cardnumb == 6 %}
+        {% switch memory.size %}
+        {% case 6 %}
             facile
-        {% elseif cardnumb == 12 %}
+        {% case 12 %}
             moyen
-        {% elseif cardnumb == 18 %}
+        {% case 18 %}
             difficile
-        {% endif %}
+        {% default %}
+            {{ "<difficulté inconnue>"|e }}
+        {% endswitch %}
     </h3>
 
     <div id="gameinfo" class="d-flex flex-row justify-around mb-3">
@@ -36,14 +42,12 @@
     </div>
 
     <div id="cards" class="row">
-        {%  for i in 1 .. cardnumb %}
-            <div id="card_{{ loop.index }}" class="card_div col-2 mb-3" ><img src="{{ asset('img/card.png') }}" class="card_img"></div>
-        {%  endfor %}
+        {% for i in 0 .. memory.cards|length - 1 %}
+            <div id="card_{{ loop.index }}" class="card_div col-2 mb-3 {{ memory.cards[loop.index] }}">
+                <img src="{{ asset('img/hidden.png') }}" class="card_img">
+            </div>
+        {% endfor %}
     </div>
-
-    {% for card in cards %}
-        {{ card }}
-    {% endfor %}
 {% endblock %}
 
 {% block script %}
