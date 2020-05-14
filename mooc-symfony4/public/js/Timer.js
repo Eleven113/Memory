@@ -1,8 +1,7 @@
 class Timer {
     constructor() {
-        console.log("timer chargé");
         this.spanTimer = document.getElementById('gameinfo_time-numb');
-        this.time = parseInt(this.spanTimer.textContent);
+        this.time = 0;
         this.startTimer();
     }
 
