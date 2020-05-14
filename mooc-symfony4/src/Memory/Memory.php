@@ -53,12 +53,12 @@ class Memory
     }
 
     public function play($i) {
-        if (count($this->currentPair) == 2 || $this->cards[$i]->status == "visible") {
+        if (count($this->currentPair) == 2 || $this->cards[$i]->getStatus() == "visible") {
             return;
         }
         if (count($this->currentPair) == 0) {
             array_push($this->currentPair,$this->cards[$i]);
-            $this->currentPair[0]->status = "visible";
+            $this->currentPair[0]->setStatus("visible");
             return;
         }
         $this->handleNewPair($i);
@@ -67,11 +67,11 @@ class Memory
     private function handleNewPair($i)
     {
         array_push($this->currentPair,$this->cards[$i]);
-        $this->currentPair[1]->status = "visible";
+        $this->currentPair[1]->setStatus("visible");
         $matched = ($this->currentPair[0]->symbol == $this->currentPair[1]->symbol);
         if ($matched) {
             $currentPlayer = $this->players[$this->player];
-            array_push($currentPlayer->matchedCards, $this->currentPair[0]);
+            array_push($currentPlayer->getMatchedCards(), $this->currentPair[0]);
             $this->currentPair = [];
             $this->checkGameOver();
         }
@@ -81,7 +81,7 @@ class Memory
     {
         $matchedPairs = 0;
         foreach ($this->players as $player) {
-            $matchedPairs += count($player->matchedCards);
+            $matchedPairs += count($player->getMatchedCards());
         }
         if ($matchedPairs == $this->size*$this->size/2) {
             $this->isGameOver = true;
@@ -94,7 +94,7 @@ class Memory
         $winner = null;
         $maxScore = 0;
         foreach ($this->players as $player) {
-            $score = count($player->matchedCards);
+            $score = count($player->getMatchedCards());
             if ($score > $maxScore) {
                 $maxScore = $score;
                 $winner = $player;
