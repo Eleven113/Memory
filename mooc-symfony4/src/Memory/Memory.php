@@ -68,11 +68,12 @@ class Memory
      */
     public function play($i) {
         if (count($this->currentPair) == 2 || $this->cards[$i]->getStatus() == "visible") {
-            $playResponse = new PlayResponse(null, false, false, false);
+            $playResponse = new PlayResponse(null, false, false, $this->isGameOver);
         } else if (count($this->currentPair) == 0) {
-            array_push($this->currentPair,$this->cards[$i]);
-            $this->currentPair[0]->setStatus("visible");
-            $playResponse = new PlayResponse();
+            $card = $this->cards[$i];
+            array_push($this->currentPair, $card);
+            $card->setStatus("visible");
+            $playResponse = new PlayResponse($card->getSymbol(), false, false, $this->isGameOver);
         } else $playResponse = $this->handleNewPair($i);
         return $playResponse;
     }
@@ -83,18 +84,19 @@ class Memory
      */
     private function handleNewPair($i)
     {
-        array_push($this->currentPair,$this->cards[$i]);
-        $this->currentPair[1]->setStatus("visible");
-        $matched = ($this->currentPair[0]->symbol == $this->currentPair[1]->symbol);
+        $card = $this->cards[$i];
+        array_push($this->currentPair,$card);
+        $card->setStatus("visible");
+        $matched = ($this->currentPair[0]->symbol == $card->symbol);
         if ($matched) {
             $currentPlayer = $this->players[$this->player];
             array_push($currentPlayer->getMatchedCards(), $this->currentPair[0]);
             $this->currentPair = [];
             $this->checkGameOver();
-            $playResponse = new PlayResponse();
+            $playResponse = new PlayResponse($card->getSymbol(), true, true, $this->isGameOver);
         } else {
             $this->nextPlayer();
-            $playResponse = new PlayResponse();
+            $playResponse = new PlayResponse($card->getSymbol(), true, false, $this->isGameOver);
         }
         return $playResponse;
     }

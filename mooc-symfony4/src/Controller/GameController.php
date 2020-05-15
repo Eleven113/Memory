@@ -47,6 +47,9 @@ class GameController extends AbstractController
             'cards' => $this->memory->getCards()]);
     }
 
+    /**
+     * @Route("/play", name="app_play")
+     */
     public function play(Request $request)
     {
         $i = $request->request->getInt('i');
