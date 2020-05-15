@@ -33,6 +33,7 @@ class Memory
         $this->cards = $this->generateCards($size);
         $this->isGameOver = false;
         $this->theme = $theme;
+        $this->currentPair = [];
     }
 
     /**
@@ -50,7 +51,15 @@ class Memory
             array_push($selectedSymbols, $symbol, $symbol);
         }
         shuffle($selectedSymbols);
-        return $selectedSymbols;
+
+        // Add
+        $cards = new \ArrayObject();
+        foreach($selectedSymbols as $symbol ){
+            $card = new Card($symbol);
+            $cards->append($card);
+        }
+
+        return $cards;
     }
 
     /**
@@ -67,9 +76,13 @@ class Memory
      * @return PlayResponse
      */
     public function play($i) {
+        var_dump($this->cards);
+        echo count($this->currentPair);
         if (count($this->currentPair) == 2 || $this->cards[$i]->getStatus() == "visible") {
+            echo 'celuici';
             $playResponse = new PlayResponse(null, false, false, $this->isGameOver);
         } else if (count($this->currentPair) == 0) {
+            echo 'ce if là';
             $card = $this->cards[$i];
             array_push($this->currentPair, $card);
             $card->setStatus("visible");
