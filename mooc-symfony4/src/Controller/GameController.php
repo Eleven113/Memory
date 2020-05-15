@@ -48,11 +48,10 @@ class GameController extends AbstractController
     }
 
     /**
-     * @Route("/play", name="app_play")
+     * @Route("/play/{i}", name="app_play", requirements= { "i"  = "\d+"})
      */
-    public function play(Request $request)
+    public function play($i)
     {
-        $i = $request->request->getInt('i');
         $playResponse = $this->memory->play($i);
         return new JsonResponse($playResponse);
     }
