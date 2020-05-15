@@ -18,7 +18,9 @@ class Memory
 
     /**
      * Memory constructor.
-     * @param $size
+     * @param int $size
+     * @param string[] $names
+     * @param string $theme
      */
     public function __construct($size, $names, $theme)
     {
@@ -33,6 +35,10 @@ class Memory
         $this->theme = $theme;
     }
 
+    /**
+     * @param int $size
+     * @return array
+     */
     private function generateCards($size)
     {
         $candidates = str_split($this->symbols, 1);
@@ -43,9 +49,13 @@ class Memory
             $candidates = array_slice($candidates,1);
             array_push($selectedSymbols, $symbol, $symbol);
         }
-        return shuffle($selectedSymbols);
+        shuffle($selectedSymbols);
+        return $selectedSymbols;
     }
 
+    /**
+     * @return void
+     */
     private function nextPlayer() {
         if ($this->player == count($this->players - 1)) {
             $this->player = 0;
@@ -64,6 +74,10 @@ class Memory
         $this->handleNewPair($i);
         }
 
+    /**
+     * @param int $i
+     * @return void
+     */
     private function handleNewPair($i)
     {
         array_push($this->currentPair,$this->cards[$i]);
@@ -79,6 +93,9 @@ class Memory
         }
     }
 
+    /**
+     * @return void
+     */
     private function checkGameOver()
     {
         $matchedPairs = 0;
@@ -91,6 +108,9 @@ class Memory
         }
     }
 
+    /**
+     * @return void
+     */
     private function setWinner()
     {
         $winner = null;

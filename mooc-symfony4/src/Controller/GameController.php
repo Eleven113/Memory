@@ -37,18 +37,12 @@ class GameController extends AbstractController
             $username2 = $request->request->get('username2');
             array_push($names, $username2);
         }
-//        $cards = [];
-//        for ($i =1; $i <= $cardnumb/2; $i++){
-//            array_push($cards, 'img/'.$theme.'/'.$i.'.png');
-//            array_push($cards, 'img/'.$theme.'/'.$i.'.png');
-//        }
-//
-//        shuffle($cards);
         $this->memory = new Memory($size, $names, $theme);
-        return $this->render('Game/Game.html.twig' , ['memory' => $this->memory]);
-//            'username' => $username,
-//            'theme' => $theme,
-//            'cardnumb' => $cardnumb,
-//            'cards' => $cards]);
+        return $this->render('Game/Game.html.twig',
+            ['players' => $this->memory->getPlayers(),
+            'player' => $this->memory->getPlayer(),
+            'theme' => $theme,
+            'size' => $size,
+            'cards' => $this->memory->getCards()]);
     }
 }
