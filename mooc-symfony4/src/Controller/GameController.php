@@ -8,6 +8,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Memory\Memory;
 
@@ -16,19 +18,17 @@ use App\Memory\Memory;
  */
 class GameController extends AbstractController
 {
-//    /**
-//     * @var Memory
-//     */
-//    private $memory;
+    private $session;
 
-//    /**
-//     * GameController constructor.
-//     * @param $memory
-//     */
-//    public function __construct(Memory $memory)
-//    {
-//        $this->memory = $memory;
-//    }
+    /**
+     * GameController constructor.
+     * @param $session
+     */
+
+    public function __construct(SessionInterface $session)
+    {
+        $this->session = $session;
+    }
 
     /**
      * @Route("/newgame", name="app_newgame")
@@ -54,23 +54,24 @@ class GameController extends AbstractController
             $username2 = $request->request->get('username2');
             array_push($names, $username2);
         }
-        $this->memory = new Memory($size, $names, $theme);
+        $memory = new Memory($size, $names, $theme);
+        $this->session->set('memory', $memory);
         return $this->render('Game/Game.html.twig',
-            ['players' => $this->memory->getPlayers(),
-            'player' => $this->memory->getPlayer(),
+            ['players' => $memory->getPlayers(),
+            'player' => $memory->getPlayer(),
             'theme' => $theme,
             'size' => $size,
-            'cards' => $this->memory->getCards()]);
+            'cards' => $memory->getCards()]);
     }
 
     /**
      * @Route("/play/{i}", name="app_play", requirements= { "i"  = "\d+"})
      * @param $i
-     * @param Memory $memory
      * @return JsonResponse
      */
-    public function play($i, Memory $memory)
+    public function play($i)
     {
+        $memory = $this->session->get('memory');
         $playResponse = $memory->play($i);
         return new JsonResponse($playResponse);
     }
