@@ -98,6 +98,7 @@ class Memory
             $this->nextPlayer();
             $playResponse = new PlayResponse($card->getSymbol(), true, false, $this->isGameOver);
         }
+        $this->players[$this->player]->updateCount();
         return $playResponse;
     }
 

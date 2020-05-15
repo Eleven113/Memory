@@ -8,6 +8,7 @@ class Player
 {
     private $matchedCards;
     private $name;
+    private $tryCount;
 
     /**
      * Player constructor.
@@ -16,6 +17,13 @@ class Player
     public function __construct($name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return void
+     */
+    public function updateCount() {
+        $this->tryCount++;
     }
 
     /**
@@ -50,11 +58,28 @@ class Player
         $this->name = $name;
     }
 
+    /**
+     * @return int
+     */
+    public function getTryCount()
+    {
+        return $this->tryCount;
+    }
+
+    /**
+     * @param int $tryCount
+     */
+    public function setTryCount($tryCount)
+    {
+        $this->tryCount = $tryCount;
+    }
+
     public function __toString()
     {
         return "Player{" .
             "matchedCards=" . $this->matchedCards .
             ", name='" . $this->name . '\'' .
+            ", tryCount='" . $this->tryCount . '\'' .
             '}';
     }
 

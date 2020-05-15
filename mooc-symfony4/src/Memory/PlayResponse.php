@@ -10,6 +10,7 @@ class PlayResponse
     public $isPairComplete;
     public $isMatching;
     public $isGameOver;
+    public $winner;
 
     /**
      * PlayResponse constructor.
@@ -18,12 +19,13 @@ class PlayResponse
      * @param $isMatching
      * @param $isGameOver
      */
-    public function __construct($symbol, $isPairComplete, $isMatching, $isGameOver)
+    public function __construct($symbol, $isPairComplete, $isMatching, $isGameOver, $winner)
     {
         $this->symbol = $symbol;
         $this->isPairComplete = $isPairComplete;
         $this->isMatching = $isMatching;
         $this->isGameOver = $isGameOver;
+        $this->winner = $winner;
     }
 
 

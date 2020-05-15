@@ -16,6 +16,7 @@ use App\Memory\Memory;
 class GameController extends AbstractController
 {
     private $memory;
+
     /**
      * @Route("/newgame", name="app_newgame")
      */
@@ -49,10 +50,13 @@ class GameController extends AbstractController
 
     /**
      * @Route("/play/{i}", name="app_play", requirements= { "i"  = "\d+"})
+     * @param $i
+     * @param Memory $memory
+     * @return JsonResponse
      */
-    public function play($i)
+    public function play($i, Memory $memory)
     {
-        $playResponse = $this->memory->play($i);
+        $playResponse = $memory->play($i);
         return new JsonResponse($playResponse);
     }
 }
