@@ -40,7 +40,7 @@
 
     <div id="cards" class="row">
         {% for i in 0 .. (size - 1) %}
-            <div id="card_{{ loop.index }}" class="card_div col-2 mb-3 {{ cards[loop.index] }}">
+            <div id="card_{{ loop.index }}" class="card_div col-2 mb-3 hidden">
                 <img src="{{ asset('img/hidden.png') }}" class="card_img">
             </div>
         {% endfor %}

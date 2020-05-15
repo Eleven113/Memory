@@ -62,21 +62,24 @@ class Memory
         } else $this->player++;
     }
 
+    /**
+     * @param int $i
+     * @return PlayResponse
+     */
     public function play($i) {
         if (count($this->currentPair) == 2 || $this->cards[$i]->getStatus() == "visible") {
-            return;
-        }
-        if (count($this->currentPair) == 0) {
+            $playResponse = new PlayResponse(null, false, false, false);
+        } else if (count($this->currentPair) == 0) {
             array_push($this->currentPair,$this->cards[$i]);
             $this->currentPair[0]->setStatus("visible");
-            return;
-        }
-        $this->handleNewPair($i);
-        }
+            $playResponse = new PlayResponse();
+        } else $playResponse = $this->handleNewPair($i);
+        return $playResponse;
+    }
 
     /**
      * @param int $i
-     * @return void
+     * @return PlayResponse
      */
     private function handleNewPair($i)
     {
@@ -88,9 +91,12 @@ class Memory
             array_push($currentPlayer->getMatchedCards(), $this->currentPair[0]);
             $this->currentPair = [];
             $this->checkGameOver();
+            $playResponse = new PlayResponse();
         } else {
             $this->nextPlayer();
+            $playResponse = new PlayResponse();
         }
+        return $playResponse;
     }
 
     /**
