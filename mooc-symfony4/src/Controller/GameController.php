@@ -7,6 +7,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Memory\Memory;
 
@@ -15,7 +16,19 @@ use App\Memory\Memory;
  */
 class GameController extends AbstractController
 {
-    private $memory;
+//    /**
+//     * @var Memory
+//     */
+//    private $memory;
+
+//    /**
+//     * GameController constructor.
+//     * @param $memory
+//     */
+//    public function __construct(Memory $memory)
+//    {
+//        $this->memory = $memory;
+//    }
 
     /**
      * @Route("/newgame", name="app_newgame")
@@ -27,6 +40,8 @@ class GameController extends AbstractController
 
     /**
      * @Route("/", name="app_game")
+     * @param Request $request
+     * @return Response
      */
     public function game(Request $request)
     {
