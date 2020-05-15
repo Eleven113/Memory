@@ -5,6 +5,7 @@ namespace App\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Memory\Memory;
@@ -28,9 +29,9 @@ class GameController extends AbstractController
      */
     public function game(Request $request)
     {
-        $size = $request->request->get('size');
+        $size = $request->request->getInt('size');
         $theme = $request->request->get('theme');
-        $players = $request->request->get('players');
+        $players = $request->request->getInt('players');
         $username1 = $request->request->get('username1');
         $names = [$username1];
         if ($players == 2) {
@@ -44,5 +45,12 @@ class GameController extends AbstractController
             'theme' => $theme,
             'size' => $size,
             'cards' => $this->memory->getCards()]);
+    }
+
+    public function play(Request $request)
+    {
+        $i = $request->request->getInt('i');
+        $playResponse = $this->memory->play($i);
+        return new JsonResponse($playResponse);
     }
 }
