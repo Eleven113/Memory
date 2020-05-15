@@ -4,19 +4,49 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Flex\Response;
 
 /**
- * @Route("/game")
+ * @Route("/score")
  */
 class ScoreController extends AbstractController
 {
 
     /**
-     * @Route("/score", name="app_score")
+     * @Route("/", name="app_score")
      */
     public function index()
     {
         return $this->render('Score/Highscores.html.twig');
+    }
+
+    /**
+     * @Route("/getscore/{id}", name="app_getscore", requirements= { "id"  = "\d+"})
+     */
+    public function getscore($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $highscore = $em->getRepository('App:Highscore');
+        $highscore = $highscore->findBy(
+            ['cardnumb' => $id],
+            ['try' => 'ASC' , 'time' => 'ASC'],
+            10,
+            0
+        );
+
+        $result = [];
+        $idx = 0;
+        foreach ( $highscore as $score){
+            $temp = array(
+                'player' => $score->getPlayer(),
+                'time' => $score->getTime(),
+                'try' => $score->getTry()
+            );
+            $result[$idx++] = $temp;
+        }
+
+        return new JsonResponse($result);
     }
 }
