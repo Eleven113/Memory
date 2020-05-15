@@ -9,7 +9,7 @@ class Memory
     private $size;
     private $players;
     private $symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    private $cards;
+    private $cards = [];
     private $player;
     private $currentPair;
     private $isGameOver;
@@ -18,7 +18,9 @@ class Memory
 
     /**
      * Memory constructor.
-     * @param $size
+     * @param int $size
+     * @param string[] $names
+     * @param string $theme
      */
     public function __construct($size, $names, $theme)
     {
@@ -33,19 +35,27 @@ class Memory
         $this->theme = $theme;
     }
 
+    /**
+     * @param int $size
+     * @return array
+     */
     private function generateCards($size)
     {
         $candidates = str_split($this->symbols, 1);
         shuffle($candidates);
         $selectedSymbols = [];
-        for ($i = 0; $i < $size * $size - 1; $i++) {
+        for ($i = 0; $i < $size - 1; $i++) {
             $symbol = $candidates[0];
             $candidates = array_slice($candidates,1);
             array_push($selectedSymbols, $symbol, $symbol);
         }
-        return shuffle($selectedSymbols);
+        shuffle($selectedSymbols);
+        return $selectedSymbols;
     }
 
+    /**
+     * @return void
+     */
     private function nextPlayer() {
         if ($this->player == count($this->players - 1)) {
             $this->player = 0;
@@ -64,6 +74,10 @@ class Memory
         $this->handleNewPair($i);
         }
 
+    /**
+     * @param int $i
+     * @return void
+     */
     private function handleNewPair($i)
     {
         array_push($this->currentPair,$this->cards[$i]);
@@ -74,21 +88,29 @@ class Memory
             array_push($currentPlayer->getMatchedCards(), $this->currentPair[0]);
             $this->currentPair = [];
             $this->checkGameOver();
+        } else {
+            $this->nextPlayer();
         }
     }
 
+    /**
+     * @return void
+     */
     private function checkGameOver()
     {
         $matchedPairs = 0;
         foreach ($this->players as $player) {
             $matchedPairs += count($player->getMatchedCards());
         }
-        if ($matchedPairs == $this->size*$this->size/2) {
+        if ($matchedPairs == $this->size/2) {
             $this->isGameOver = true;
             $this->setWinner();
         }
     }
 
+    /**
+     * @return void
+     */
     private function setWinner()
     {
         $winner = null;
@@ -101,6 +123,30 @@ class Memory
             }
         }
         $this->winner = $winner;
+    }
+
+    /**
+     * @return array
+     */
+    public function getPlayers()
+    {
+        return $this->players;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPlayer()
+    {
+        return $this->player;
+    }
+
+    /**
+     * @return array
+     */
+    public function getCards()
+    {
+        return $this->cards;
     }
 
 }

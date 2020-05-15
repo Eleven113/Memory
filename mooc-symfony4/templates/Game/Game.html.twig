@@ -5,29 +5,26 @@
 {% endblock %}
 
 {% block content %}
-
-    <h3 class="text-center m-4">{{ memory.players[memory.player] }} joue avec les
-        {% switch memory.theme %}
-        {% case 'animals' %}
+    <h3 class="text-center m-4">{{ players[player].getName() }} joue avec les
+        {% if theme == 'animals' %}
             animaux
-        {% case 'monsters' %}
+        {% elseif theme == 'monsters' %}
             monstres
-        {% case 'music' %}
+        {% elseif theme == 'music' %}
             instruments de musique
-        {% default %}
+        {% else %}
             {{ "<thème inconnu>"|e }}
-        {% endswitch %}
+        {% endif %}
         en mode
-        {% switch memory.size %}
-        {% case 6 %}
+        {% if size == 6 %}
             facile
-        {% case 12 %}
+        {% elseif size == 12 %}
             moyen
-        {% case 18 %}
+        {% elseif size == 18 %}
             difficile
-        {% default %}
+        {% else %}
             {{ "<difficulté inconnue>"|e }}
-        {% endswitch %}
+        {% endif %}
     </h3>
 
     <div id="gameinfo" class="d-flex flex-row justify-around mb-3">
@@ -42,8 +39,8 @@
     </div>
 
     <div id="cards" class="row">
-        {% for i in 0 .. memory.cards|length - 1 %}
-            <div id="card_{{ loop.index }}" class="card_div col-2 mb-3 {{ memory.cards[loop.index] }}">
+        {% for i in 0 .. (size - 1) %}
+            <div id="card_{{ loop.index }}" class="card_div col-2 mb-3 {{ cards[loop.index] }}">
                 <img src="{{ asset('img/hidden.png') }}" class="card_img">
             </div>
         {% endfor %}
