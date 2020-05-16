@@ -5,17 +5,18 @@
 {% endblock %}
 
 {% block content %}
-    <h3 class="text-center m-4">{{ players[player].getName() }} joue avec les
+    {{ dump(players) }}
+    <h3 class="text-center m-4">
         {% if theme == 'animals' %}
-            animaux
+            Animaux
         {% elseif theme == 'monsters' %}
-            monstres
+            Monstres
         {% elseif theme == 'music' %}
-            instruments de musique
+            Instruments de musique
         {% else %}
             {{ "<thème inconnu>"|e }}
         {% endif %}
-        en mode
+        - Mode
         {% if size == 6 %}
             facile
         {% elseif size == 12 %}
