@@ -190,4 +190,12 @@ class Memory
         return $this->theme;
     }
 
+    /**
+     * @return int
+     */
+    public function getSize()
+    {
+        return $this->size;
+    }
+
 }

@@ -67,12 +67,17 @@ class GameController extends AbstractController
     /**
      * @Route("/play/{i}", name="app_play", requirements= { "i"  = "\d+"})
      * @param $i
-     * @return JsonResponse
+     * @return Response
      */
     public function play($i)
     {
         $memory = $this->session->get('memory');
-        $playResponse = $memory->play($i);
-        return new JsonResponse($playResponse);
+        if ($i < 0 || $i >= $memory->getSize()) {
+            $response = new Response('Incorrect value for parameter "i"', Response::HTTP_BAD_REQUEST);
+        } else {
+            $playResponse = $memory->play($i);
+            $response = new JsonResponse($playResponse);
+        }
+        return $response;
     }
 }
