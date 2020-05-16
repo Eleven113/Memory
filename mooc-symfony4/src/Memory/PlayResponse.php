@@ -4,7 +4,9 @@
 namespace App\Memory;
 
 
-class PlayResponse implements \JsonSerializable
+use JsonSerializable;
+
+class PlayResponse implements JsonSerializable
 {
 //    public $winner;
 //  TODO remettre $winner
