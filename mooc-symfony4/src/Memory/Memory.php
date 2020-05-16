@@ -38,14 +38,14 @@ class Memory
 
     /**
      * @param int $size
-     * @return array
+     * @return object
      */
     private function generateCards($size)
     {
         $candidates = str_split($this->symbols, 1);
         shuffle($candidates);
         $selectedSymbols = [];
-        for ($i = 0; $i < $size - 1; $i++) {
+        for ($i = 0; $i < $size / 2 ; $i++) {
             $symbol = $candidates[0];
             $candidates = array_slice($candidates,1);
             array_push($selectedSymbols, $symbol, $symbol);
