@@ -3,7 +3,11 @@ class Memory {
         this.cards = document.getElementsByClassName("card_img");
         this.divplayer1Ico = document.getElementById("player_1_ico");
         this.divplayer1Ico.innerHTML = '<i class="fas fa-play"></i>';
-        this.divCards = document.getElementById("cards");
+        this.DivModalWinner = document.getElementById("modal_winner");
+        this.SpanWinnerName = document.getElementById("winner_name");
+        this.SpanWinnerTry = document.getElementById("winner_try");
+        this.SpanWinnerTime = document.getElementById("winner_time");
+        this.SpanTimer = document.getElementById("gameinfo_time-numb");
         this.events();
         this.isRequesting = false ;
         this.currentPair = [];
@@ -53,6 +57,16 @@ class Memory {
 
                 if (data.isMatching === true) {
                     this.currentPair = [];
+                }
+
+                if (data.isGameOver === true) {
+
+                    this.SpanWinnerName.textContent = data.winner.name;
+                    this.SpanWinnerTry.textContent = data.winner.tryCount;
+                    this.SpanWinnerTime.textContent = this.SpanTimer.textContent;
+
+                    this.DivModalWinner.style.display = "flex";
+
                 }
 
                 this.isRequesting = false;
