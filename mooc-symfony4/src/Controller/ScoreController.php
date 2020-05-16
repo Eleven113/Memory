@@ -24,14 +24,14 @@ class ScoreController extends AbstractController
     }
 
     /**
-     * @Route("/getscore/{difficulty}/{numplayers}", name="app_getscore", requirements= { "difficulty"  = "\s+", "numplayers" = "\d+" })
+     * @Route("/getscore/{difficulty}/{numplayers}", name="app_getscore")
      */
-    public function getscore($cardnumb, $numplayers)
+    public function getscore($difficulty, $numplayers)
     {
         $em = $this->getDoctrine()->getManager();
         $highscore = $em->getRepository('App:Highscore');
         $highscore = $highscore->findBy(
-            ['cardnumb' => $cardnumb, 'numplayers' => $numplayers],
+            ['cardnumb' => $difficulty, 'playernumb' => $numplayers],
             ['try' => 'ASC' , 'time' => 'ASC'],
             10,
             0
