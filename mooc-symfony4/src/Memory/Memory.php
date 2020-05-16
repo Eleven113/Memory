@@ -34,6 +34,7 @@ class Memory
         $this->isGameOver = false;
         $this->theme = $theme;
         $this->currentPair = [];
+        $this->winner = null;
     }
 
     /**
@@ -197,5 +198,15 @@ class Memory
     {
         return $this->size;
     }
+
+    /**
+     * @return Player
+     */
+    public function getWinner()
+    {
+        return $this->winner;
+    }
+
+
 
 }

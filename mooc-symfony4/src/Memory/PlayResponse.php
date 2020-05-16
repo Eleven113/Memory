@@ -8,8 +8,6 @@ use JsonSerializable;
 
 class PlayResponse implements JsonSerializable
 {
-//    public $winner;
-//  TODO remettre $winner
     /**
      * @var string
      */
@@ -38,6 +36,10 @@ class PlayResponse implements JsonSerializable
      * @var string
      */
     private $theme;
+    /**
+     * @var Player
+     */
+    private $winner;
 
 
     /**
@@ -56,7 +58,7 @@ class PlayResponse implements JsonSerializable
         $this->players = $memory->getPlayers();
         $this->player = $memory->getPlayer();
         $this->theme = $memory->getTheme();
-//        $this->winner = $winner;
+        $this->winner = $memory->getWinner();
     }
 
 
