@@ -55,6 +55,16 @@
             </div>
         {% endfor %}
     </div>
+
+    <div id="modal_winner">
+        <div id="modal_close"><i class="fas fa-times"></i></div>
+        <div id="modal_trophy"><i class="fas fa-trophy"></i></div>
+        <div id="modal_content">
+            <div>Félicitations <span id="winner_name">, tu remportes cette partie !</span></div>
+            <div><span id="winner_try"></span>essais en <span id="winner_time"></span></div>
+        </div>
+    </div>
+
 {% endblock %}
 
 {% block script %}

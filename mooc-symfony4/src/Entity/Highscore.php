@@ -37,6 +37,11 @@ class Highscore
      */
     private $try;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $playernumb;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +91,18 @@ class Highscore
     public function setTry(int $try): self
     {
         $this->try = $try;
+
+        return $this;
+    }
+
+    public function getPlayernumb(): ?int
+    {
+        return $this->playernumb;
+    }
+
+    public function setPlayernumb(int $playernumb): self
+    {
+        $this->playernumb = $playernumb;
 
         return $this;
     }

@@ -35,3 +35,22 @@
 #player_1_ico, #player_2_ico {
     color : #007bff;
 }
+
+#modal_winner{
+    display : flex;
+    justify-content: center;
+    align-items: center;
+    position : absolute;
+    top: 0;
+    left: 0;
+    width : 100%;
+    height: 100%;
+    background-color: black;
+    color : white;
+}
+
+#modal_content{
+    width : 40%;
+    border : 5px solid #007bff;
+    height: 50%;
+}
