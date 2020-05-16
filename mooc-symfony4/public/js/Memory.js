@@ -3,7 +3,6 @@ class Memory {
         this.cards = document.getElementsByClassName("card_img");
         this.divplayer1Ico = document.getElementById("player_1_ico");
         this.divplayer1Ico.innerHTML = '<i class="fas fa-play"></i>';
-        this.divplayer1Ico.style.color = '#007bff';
         this.events();
         this.currentPair = [];
     }
@@ -19,17 +18,33 @@ class Memory {
     checkCard(event){
         this.id = event.target.id.split('_')[1];
         $.get('/Memory/mooc-symfony4/public/index.php/game/play/'+ this.id , function(data){
-            console.log(data);
-            console.log(data.symbol);
 
+            this.playerId = parseInt(data.player) + 1;
+
+            if ( this.playerId === 1) {
+                document.getElementById("player_1_ico").innerHTML = '<i class="fas fa-play"></i>';
+                document.getElementById("player_2_ico").innerHTML = '';
+            } else {
+                document.getElementById("player_2_ico").innerHTML = '<i class="fas fa-play"></i>';
+                document.getElementById("player_1_ico").innerHTML = '';
+            }
 
             if ( data.symbol !== null ){
+                this.currentPair.push(this.id);
                 this.img = document.getElementById('card_'+this.id);
                 this.img.src = '/Memory/mooc-symfony4/public/img/' + data.theme + '/' + data.symbol + '.png';
             }
 
             if ( data.isPairComplete === true && data.isMatching === false ){
+                setTimeout( () => {
+                    document.getElementById('card_' + this.currentPair[0]).src = '/Memory/mooc-symfony4/public/img/hidden.png';
+                    document.getElementById('card_' + this.currentPair[1]).src = '/Memory/mooc-symfony4/public/img/hidden.png';
+                    this.currentPair = [];
+                },1000);
+            }
 
+            if ( data.isMatching === true ) {
+                this.currentPair = [];
             }
 
         }.bind(this));

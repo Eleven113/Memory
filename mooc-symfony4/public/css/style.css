@@ -31,3 +31,7 @@
 #players{
     font-size: 2vw;
 }
+
+#player_1_ico, #player_2_ico {
+    color : #007bff;
+}
