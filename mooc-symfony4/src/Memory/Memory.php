@@ -66,7 +66,7 @@ class Memory
      * @return void
      */
     private function nextPlayer() {
-        if ($this->player == count($this->players - 1)) {
+        if ($this->player == count($this->players) - 1) {
             $this->player = 0;
         } else $this->player++;
     }
@@ -77,13 +77,12 @@ class Memory
      */
     public function play($i) {
         if (count($this->currentPair) == 2 || $this->cards[$i]->getStatus() == "visible") {
-            $playResponse = new PlayResponse(null, false, false, $this->isGameOver);
-//            $playResponse = new PlayResponse(null, false, false, $this->isGameOver, $this->players, $this->player, $this->theme);
+            $playResponse = new PlayResponse(null, false, false, $this);
         } else if (count($this->currentPair) == 0) {
             $card = $this->cards[$i];
             array_push($this->currentPair, $card);
             $card->setStatus("visible");
-            $playResponse = new PlayResponse($card->getSymbol(), false, false, $this->isGameOver);
+            $playResponse = new PlayResponse($card->getSymbol(), false, false, $this);
         } else $playResponse = $this->handleNewPair($i);
         return $playResponse;
     }
@@ -97,16 +96,16 @@ class Memory
         $card = $this->cards[$i];
         array_push($this->currentPair,$card);
         $card->setStatus("visible");
-        $matched = ($this->currentPair[0]->symbol == $card->symbol);
+        $matched = ($this->currentPair[0]->getSymbol() == $card->getSymbol());
         if ($matched) {
             $currentPlayer = $this->players[$this->player];
             array_push($currentPlayer->getMatchedCards(), $this->currentPair[0]);
             $this->currentPair = [];
             $this->checkGameOver();
-            $playResponse = new PlayResponse($card->getSymbol(), true, true, $this->isGameOver);
+            $playResponse = new PlayResponse($card->getSymbol(), true, true, $this);
         } else {
             $this->nextPlayer();
-            $playResponse = new PlayResponse($card->getSymbol(), true, false, $this->isGameOver);
+            $playResponse = new PlayResponse($card->getSymbol(), true, false, $this);
         }
         $this->players[$this->player]->updateCount();
         return $playResponse;
@@ -166,6 +165,22 @@ class Memory
     public function getCards()
     {
         return $this->cards;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isGameOver()
+    {
+        return $this->isGameOver;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTheme()
+    {
+        return $this->theme;
     }
 
 }

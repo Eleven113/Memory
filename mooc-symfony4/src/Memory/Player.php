@@ -4,7 +4,7 @@
 namespace App\Memory;
 
 
-class Player
+class Player implements \JsonSerializable
 {
     private $matchedCards;
     private $name;
@@ -17,6 +17,8 @@ class Player
     public function __construct($name)
     {
         $this->name = $name;
+        $this->matchedCards = [];
+        $this->tryCount = 0;
     }
 
     /**
@@ -84,4 +86,11 @@ class Player
     }
 
 
+    /**
+     * @inheritDoc
+     */
+    public function jsonSerialize()
+    {
+        return get_object_vars($this);
+    }
 }
