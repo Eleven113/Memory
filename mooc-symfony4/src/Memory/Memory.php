@@ -69,6 +69,7 @@ class Memory
         if ($this->player == count($this->players) - 1) {
             $this->player = 0;
         } else $this->player++;
+        $this->hideCurrentPair();
     }
 
     /**
@@ -94,12 +95,12 @@ class Memory
     private function handleNewPair($i)
     {
         $card = $this->cards[$i];
+        $currentPlayer = $this->players[$this->player];
         array_push($this->currentPair,$card);
         $card->setStatus("visible");
         $matched = ($this->currentPair[0]->getSymbol() == $card->getSymbol());
         if ($matched) {
-            $currentPlayer = $this->players[$this->player];
-            array_push($currentPlayer->getMatchedCards(), $this->currentPair[0]);
+            $currentPlayer->addMatchedCard($this->currentPair[0]);
             $this->currentPair = [];
             $this->checkGameOver();
             $playResponse = new PlayResponse($card->getSymbol(), true, true, $this);
@@ -107,8 +108,14 @@ class Memory
             $this->nextPlayer();
             $playResponse = new PlayResponse($card->getSymbol(), true, false, $this);
         }
-        $this->players[$this->player]->updateCount();
+        $currentPlayer->updateCount();
         return $playResponse;
+    }
+
+    public function hideCurrentPair() {
+        $this->currentPair[0]->setStatus("hidden");
+        $this->currentPair[1]->setStatus("hidden");
+        $this->currentPair = [];
     }
 
     /**

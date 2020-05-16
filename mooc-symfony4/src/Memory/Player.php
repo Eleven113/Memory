@@ -4,7 +4,9 @@
 namespace App\Memory;
 
 
-class Player implements \JsonSerializable
+use JsonSerializable;
+
+class Player implements JsonSerializable
 {
     private $matchedCards;
     private $name;
@@ -26,6 +28,10 @@ class Player implements \JsonSerializable
      */
     public function updateCount() {
         $this->tryCount++;
+    }
+
+    public function addMatchedCard(Card $card) {
+        array_push($this->matchedCards, $card);
     }
 
     /**

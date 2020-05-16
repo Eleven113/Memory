@@ -4,7 +4,9 @@
 namespace App\Memory;
 
 
-class Card
+use JsonSerializable;
+
+class Card implements JsonSerializable
 {
     private $symbol;
     private $status;
@@ -60,4 +62,11 @@ class Card
     }
 
 
+    /**
+     * @inheritDoc
+     */
+    public function jsonSerialize()
+    {
+        return get_object_vars($this);
+    }
 }
