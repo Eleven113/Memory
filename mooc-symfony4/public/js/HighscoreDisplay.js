@@ -42,9 +42,9 @@ class HighscoreDisplay{
 
     display(event){
         let difficulties = {
-            "easy": "Facile",
-            "medium": "Moyen",
-            "hard": "Difficile"
+            "easy": "facile",
+            "medium": "moyen",
+            "hard": "difficile"
         };
         let numplayers = {
           1: "1 joueur",
@@ -57,7 +57,7 @@ class HighscoreDisplay{
           "1": this.div1Player,
           "2": this.div2Players
         };
-        this.h4.textContent = "Mode " + numplayers[this.numplayers] + " / " + difficulties[this.difficulty];
+        this.h4.textContent = "Mode " + numplayers[this.numplayers] + " - " + difficulties[this.difficulty];
         for (let div of Object.values(divs)) {
             div.className = "col-4 text-center";
         }
