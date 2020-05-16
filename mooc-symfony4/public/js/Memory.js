@@ -17,16 +17,18 @@ class Memory {
 
     checkCard(event){
         this.id = event.target.id.split('_')[1];
-        $.get('/Memory/mooc-symfony4/public/index.php/game/play/'+ this.id , function(data){
+        $.get('/Memory/mooc-symfony4/public/index.php/game/play/'+ this.id , function(data) {
 
-            this.playerId = parseInt(data.player) + 1;
+            if (data.players.length === 2) {
+                this.playerId = parseInt(data.player) + 1;
 
-            if ( this.playerId === 1) {
-                document.getElementById("player_1_ico").innerHTML = '<i class="fas fa-play"></i>';
-                document.getElementById("player_2_ico").innerHTML = '';
-            } else {
-                document.getElementById("player_2_ico").innerHTML = '<i class="fas fa-play"></i>';
-                document.getElementById("player_1_ico").innerHTML = '';
+                if (this.playerId === 1) {
+                    document.getElementById("player_1_ico").innerHTML = '<i class="fas fa-play"></i>';
+                    document.getElementById("player_2_ico").innerHTML = '';
+                } else {
+                    document.getElementById("player_2_ico").innerHTML = '<i class="fas fa-play"></i>';
+                    document.getElementById("player_1_ico").innerHTML = '';
+                }
             }
 
             if ( data.symbol !== null ){
