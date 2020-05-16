@@ -18,7 +18,7 @@ class MenuController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $highscore = $em->getRepository('App:Highscore');
         $highscore = $highscore->findBy(
-            ['cardnumb' => 6],
+            ['difficulty' => 'easy', 'numplayers' => 1],
             ['try' => 'ASC' , 'time' => 'ASC'],
             10,
             0

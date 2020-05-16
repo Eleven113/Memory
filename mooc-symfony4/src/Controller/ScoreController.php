@@ -31,7 +31,7 @@ class ScoreController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $highscore = $em->getRepository('App:Highscore');
         $highscore = $highscore->findBy(
-            ['cardnumb' => $difficulty, 'playernumb' => $numplayers],
+            ['difficulty' => $difficulty, 'numplayers' => $numplayers],
             ['try' => 'ASC' , 'time' => 'ASC'],
             10,
             0

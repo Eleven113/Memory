@@ -28,9 +28,9 @@ class Highscore
     private $time;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      */
-    private $cardnumb;
+    private $difficulty;
 
     /**
      * @ORM\Column(type="integer")
@@ -40,7 +40,7 @@ class Highscore
     /**
      * @ORM\Column(type="integer")
      */
-    private $playernumb;
+    private $numplayers;
 
     public function getId(): ?int
     {
@@ -71,14 +71,14 @@ class Highscore
         return $this;
     }
 
-    public function getCardnumb(): ?int
+    public function getDifficulty(): ?string
     {
-        return $this->cardnumb;
+        return $this->difficulty;
     }
 
-    public function setCardnumb(int $cardnumb): self
+    public function setDifficulty(int $difficulty): self
     {
-        $this->cardnumb = $cardnumb;
+        $this->difficulty = $difficulty;
 
         return $this;
     }
@@ -95,14 +95,14 @@ class Highscore
         return $this;
     }
 
-    public function getPlayernumb(): ?int
+    public function getNumplayers(): ?int
     {
-        return $this->playernumb;
+        return $this->numplayers;
     }
 
-    public function setPlayernumb(int $playernumb): self
+    public function setPlayernumb(int $numplayers): self
     {
-        $this->playernumb = $playernumb;
+        $this->numplayers = $numplayers;
 
         return $this;
     }
