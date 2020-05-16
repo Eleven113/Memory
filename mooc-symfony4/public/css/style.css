@@ -56,7 +56,7 @@
     background-color: white;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     width : 50%;
     border : 5px solid #007bff;
     height: 70%;
