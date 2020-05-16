@@ -44,7 +44,19 @@ class GameController extends AbstractController
      */
     public function game(Request $request)
     {
-        $size = $request->request->getInt('size');
+        switch ($request->request->get('difficulty')) {
+            case "easy":
+                $size = 6;
+                break;
+            case "medium":
+                $size = 12;
+                break;
+            case "hard":
+                $size = 18;
+                break;
+            default:
+                $size = 12;
+        }
         $theme = $request->request->get('theme');
         $players = $request->request->getInt('players');
         $username1 = $request->request->get('username1');
