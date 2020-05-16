@@ -10,7 +10,6 @@ class HighscoreDisplay{
         this.numplayers = 1;
         this.difficulty = "easy";
         this.events();
-
     }
 
     events(){
@@ -51,10 +50,19 @@ class HighscoreDisplay{
           1: "1 joueur",
           2: "2 joueurs"
         };
+        let divs = {
+          "easy": this.divEasy,
+          "medium": this.divMedium,
+          "hard": this.divHard,
+          "1": this.div1Player,
+          "2": this.div2Players
+        };
         this.h4.textContent = "Mode " + numplayers[this.numplayers] + " / " + difficulties[this.difficulty];
-        this.divEasy.className = "col-4 text-center font-weight-bold";
-        this.divMedium.className = "col-4 text-center";
-        this.divHard.className = "col-4 text-center";
+        for (let div of Object.values(divs)) {
+            div.className = "col-4 text-center";
+        }
+        divs[this.difficulty].className += " font-weight-bold";
+        divs[this.numplayers].className += " font-weight-bold";
         this.getScore(this.difficulty, this.numplayers);
     }
 
