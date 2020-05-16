@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-    {{ dump(players) }}
+
     <h3 class="text-center m-4">
         {% if theme == 'animals' %}
             Animaux
@@ -28,12 +28,21 @@
         {% endif %}
     </h3>
 
-    <div id="gameinfo" class="d-flex flex-row justify-around mb-3">
-        <div id="gameinfo_try" class="text-center col-5">
+    <div id="players" class="d-flex flex-row justify-content-around col-12 mb-3">
+        {% for player in players %}
+            <div id="player{{ loop.index }}" class="col-3 d-flex flex-row">
+                <div id="player_{{ loop.index }}_ico" class="col-2"></div>
+                <div id="player_{{ loop.index }}_name" class="col-10">{{ player.name }}</div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div id="gameinfo" class="d-flex flex-row justify-content-center mb-3">
+        <div id="gameinfo_try" class="text-center col-3">
             <span id="gameinfo_try-txt">Essai(s) : </span>
             <span id="gameinfo_try-numb"> 0 </span>
         </div>
-        <div id="gameinfo_time" class="text-center col-5">
+        <div id="gameinfo_time" class="text-center col-3">
             <span id="gameinfo_time-txt">Temps : </span>
             <span id="gameinfo_time-numb"> 00:00 </span>
         </div>
@@ -42,7 +51,7 @@
     <div id="cards" class="row">
         {% for i in 0 .. (size - 1) %}
             <div class="card_div col-2 mb-3 hidden">
-                <img id="card_{{ loop.index }}"  src="{{ asset('img/hidden.png') }}" class="card_img">
+                <img id="card_{{ loop.index0 }}"  src="{{ asset('img/hidden.png') }}" class="card_img">
             </div>
         {% endfor %}
     </div>

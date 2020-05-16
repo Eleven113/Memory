@@ -27,3 +27,7 @@
     flex-direction: row;
     justify-content: space-around;
 }
+
+#players{
+    font-size: 2vw;
+}
