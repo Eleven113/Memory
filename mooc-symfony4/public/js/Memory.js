@@ -5,6 +5,7 @@ class Memory {
         this.divplayer1Ico.innerHTML = '<i class="fas fa-play"></i>';
         this.divplayer1Ico.style.color = '#007bff';
         this.events();
+        this.currentPair = [];
     }
 
     events(){
@@ -20,8 +21,17 @@ class Memory {
         $.get('/Memory/mooc-symfony4/public/index.php/game/play/'+ this.id , function(data){
             console.log(data);
             console.log(data.symbol);
-            this.img = document.getElementById('card_'+this.id);
-            this.img.src = '/Memory/mooc-symfony4/public/img/' + data.theme + '/' + data.symbol + '.png';
+
+
+            if ( data.symbol !== null ){
+                this.img = document.getElementById('card_'+this.id);
+                this.img.src = '/Memory/mooc-symfony4/public/img/' + data.theme + '/' + data.symbol + '.png';
+            }
+
+            if ( data.isPairComplete === true && data.isMatching === false ){
+
+            }
+
         }.bind(this));
     }
 }
