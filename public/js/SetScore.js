@@ -16,7 +16,7 @@ class SetScore {
             "difficulty" : difficulty,
             "numplayers" : numplayers
         };
-        $.post('/Memory/mooc-symfony4/public/index.php/score/setscore/', this.data, function(){})
+        $.post('/Memory/public/index.php/score/setscore/', this.data, function(){})
     }
 }
 

@@ -67,7 +67,7 @@ class HighscoreDisplay{
     }
 
     getScore($numcards,$numplayers){
-        $.get('/Memory/mooc-symfony4/public/index.php/score/getscore/'+$numcards+'/'+$numplayers, function(data){
+        $.get('/Memory/public/index.php/score/getscore/'+$numcards+'/'+$numplayers, function(data){
             document.querySelector("tbody").innerHTML = '';
             for (let i=0; i <= data.length; i++){
                 this.tr = document.createElement('tr');
