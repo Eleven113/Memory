@@ -4,7 +4,7 @@ class SetScore {
         this.time = time;
         this.try = tries;
         this.difficulty = difficulty;
-        this.numplayers = numplayers
+        this.numplayers = numplayers;
         this.sendScore(this.player, this.time, this.try, this.difficulty, this.numplayers);
     }
 
@@ -16,7 +16,6 @@ class SetScore {
             "difficulty" : difficulty,
             "numplayers" : numplayers
         };
-        console.log(this.data);
         $.post('/Memory/mooc-symfony4/public/index.php/score/setscore/', this.data, function(){})
     }
 }

@@ -1,6 +1,6 @@
 class Timer {
     constructor() {
-        this.spanTimer = document.getElementById('gameinfo_time-numb');
+        this.spanTimer = document.getElementById('gameinfo_time-num');
         this.time = 0;
         this.startTimer();
     }
