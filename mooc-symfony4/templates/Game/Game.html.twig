@@ -17,11 +17,11 @@
             {{ "Thème inconnu"|e }}
         {% endif %}
         - Mode
-        {% if size == 6 %}
+        {% if difficulty == 'easy' %}
             facile
-        {% elseif size == 12 %}
+        {% elseif difficulty == 'medium' %}
             moyen
-        {% elseif size == 18 %}
+        {% elseif difficulty == 'hard' %}
             difficile
         {% else %}
             {{ "de difficulté inconnu"|e }}
@@ -68,6 +68,7 @@
 {% endblock %}
 
 {% block script %}
+    <script src="{{ asset('js/SetScore.js') }}"></script>
     <script src="{{ asset('js/Memory.js') }}"></script>
     <script src="{{ asset('js/Timer.js') }}"></script>
 {% endblock %}

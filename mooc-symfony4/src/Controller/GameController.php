@@ -44,19 +44,7 @@ class GameController extends AbstractController
      */
     public function game(Request $request)
     {
-        switch ($request->request->get('difficulty')) {
-            case "easy":
-                $size = 6;
-                break;
-            case "medium":
-                $size = 12;
-                break;
-            case "hard":
-                $size = 18;
-                break;
-            default:
-                $size = 12;
-        }
+        $difficulty = $request->request->get('difficulty');
         $theme = $request->request->get('theme');
         $players = $request->request->getInt('players');
         $username1 = $request->request->get('username1');
@@ -65,13 +53,14 @@ class GameController extends AbstractController
             $username2 = $request->request->get('username2');
             array_push($names, $username2);
         }
-        $memory = new Memory($size, $names, $theme);
+        $memory = new Memory($difficulty, $names, $theme);
         $this->session->set('memory', $memory);
         return $this->render('Game/Game.html.twig',
             ['players' => $memory->getPlayers(),
             'player' => $memory->getPlayer(),
             'theme' => $theme,
-            'size' => $size,
+            'difficulty' => $memory->getDifficulty(),
+            'size' => $memory->getSize(),
             'cards' => $memory->getCards()]);
     }
 

@@ -64,7 +64,7 @@ class Highscore
         return $this->time;
     }
 
-    public function setTime(int $time): self
+    public function setTime(string $time): self
     {
         $this->time = $time;
 
@@ -76,7 +76,7 @@ class Highscore
         return $this->difficulty;
     }
 
-    public function setDifficulty(int $difficulty): self
+    public function setDifficulty(string $difficulty): self
     {
         $this->difficulty = $difficulty;
 
@@ -100,7 +100,7 @@ class Highscore
         return $this->numplayers;
     }
 
-    public function setPlayernumb(int $numplayers): self
+    public function setNumplayers(int $numplayers): self
     {
         $this->numplayers = $numplayers;
 

@@ -3,11 +3,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Highscore;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Flex\Response;
+//use Symfony\Flex\Response;
 
 /**
  * @Route("/score")
@@ -56,6 +58,25 @@ class ScoreController extends AbstractController
      */
     public function setscore(Request $request)
     {
-        
+        $player = $request->request->get('player');
+        $time = $request->request->get('time');
+        $try = $request->request->get('try');
+        $difficulty = $request->request->get('difficulty');
+        $numplayers = $request->request->get('numplayers');
+        var_dump($time);
+        $em = $this->getDoctrine()->getManager();
+
+        $highscore = new Highscore();
+        $highscore->setPlayer($player);
+        $highscore->setTime($time);
+        $highscore->setDifficulty($difficulty);
+        $highscore->setTry($try);
+        $highscore->setNumplayers($numplayers);
+
+
+        $em->persist($highscore);
+        $em->flush();
+
+        return new Response(null, Response::HTTP_OK);
     }
 }

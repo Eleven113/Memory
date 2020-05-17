@@ -62,7 +62,8 @@ class Memory {
                 }
 
                 if (data.isGameOver === true) {
-                    setScore.sendScore(data.winner.name, this.spanTimer.textContent, data.winner.tryCount);
+                    console.log(data.players.length);
+                    new SetScore(data.winner.name, this.spanTimer.textContent, data.winner.tryCount, data.difficulty, data.players.length);
 
                     this.spanWinnerName.textContent = data.winner.name;
                     this.spanWinnerMatchedCards.textContent = data.winner.matchedCards.length;

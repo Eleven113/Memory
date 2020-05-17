@@ -6,6 +6,7 @@ namespace App\Memory;
 
 class Memory
 {
+    private $difficulty;
     private $size;
     private $players;
     private $symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -22,13 +23,27 @@ class Memory
      * @param string[] $names
      * @param string $theme
      */
-    public function __construct($size, $names, $theme)
+    public function __construct($difficulty, $names, $theme)
     {
         $this->players = [];
         $this->players = array_map(function ($name) {
             return new Player($name);
         }, $names);
         $this->player = 0;
+        $this->difficulty = $difficulty;
+        switch ($difficulty) {
+            case "easy":
+                $size = 6;
+                break;
+            case "medium":
+                $size = 12;
+                break;
+            case "hard":
+                $size = 18;
+                break;
+            default:
+                $size = 12;
+        }
         $this->size = $size;
         $this->cards = $this->generateCards($size);
         $this->isGameOver = false;
@@ -207,6 +222,12 @@ class Memory
         return $this->winner;
     }
 
-
+    /**
+     * @return mixed
+     */
+    public function getDifficulty()
+    {
+        return $this->difficulty;
+    }
 
 }

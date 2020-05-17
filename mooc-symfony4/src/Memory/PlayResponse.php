@@ -13,6 +13,10 @@ class PlayResponse implements JsonSerializable
      */
     private $symbol;
     /**
+     * @var string
+     */
+    private $difficulty;
+    /**
      * @var bool
      */
     private $isPairComplete;
@@ -59,6 +63,7 @@ class PlayResponse implements JsonSerializable
         $this->player = $memory->getPlayer();
         $this->theme = $memory->getTheme();
         $this->winner = $memory->getWinner();
+        $this->difficulty = $memory->getDifficulty();
     }
 
 

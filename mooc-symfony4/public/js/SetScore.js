@@ -1,17 +1,23 @@
 class SetScore {
-    constructor($player, $time, $try) {
-        this.sendScore($player, $time, $try);
+    constructor(player, time, tries, difficulty, numplayers) {
+        this.player = player;
+        this.time = time;
+        this.try = tries;
+        this.difficulty = difficulty;
+        this.numplayers = numplayers
+        this.sendScore(this.player, this.time, this.try, this.difficulty, this.numplayers);
     }
 
-    sendScore($player, $time, $try){
+    sendScore(player, time, tries, difficulty, numplayers){
         this.data = {
-            "player" : $player,
-            "time" : $time,
-            "try" : $try
+            "player" : player,
+            "time" : time,
+            "try" : tries,
+            "difficulty" : difficulty,
+            "numplayers" : numplayers
         };
-
-        $.post('/Memory/mooc-symfony4/public/index.php/score/setscore/', this.data)
+        console.log(this.data);
+        $.post('/Memory/mooc-symfony4/public/index.php/score/setscore/', this.data, function(){})
     }
 }
 
-let setScore = new SetScore();
