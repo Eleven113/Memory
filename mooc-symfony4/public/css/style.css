@@ -22,7 +22,7 @@
     cursor: pointer;
 }
 
-#hs_difficulty{
+#hs_difficulty, #hs_numplayers{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
