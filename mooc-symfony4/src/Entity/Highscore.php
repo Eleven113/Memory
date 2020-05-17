@@ -23,7 +23,7 @@ class Highscore
     private $player;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      */
     private $time;
 
