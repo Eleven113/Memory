@@ -23,7 +23,7 @@ class Highscore
     private $player;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      */
     private $time;
 
@@ -59,7 +59,7 @@ class Highscore
         return $this;
     }
 
-    public function getTime(): ?int
+    public function getTime(): ?string
     {
         return $this->time;
     }
