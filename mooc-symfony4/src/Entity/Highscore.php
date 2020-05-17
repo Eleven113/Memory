@@ -2,43 +2,57 @@
 
 namespace App\Entity;
 
-use App\Repository\HighscoreRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=HighscoreRepository::class)
+ * Highscore
+ *
+ * @ORM\Table(name="highscore")
+ * @ORM\Entity
  */
 class Highscore
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="player", type="string", length=255, nullable=false)
      */
     private $player;
 
     /**
-     * @ORM\Column(type="string")
+     * @var string
+     *
+     * @ORM\Column(name="time", type="string", length=255, nullable=false)
      */
     private $time;
 
     /**
-     * @ORM\Column(type="string")
+     * @var string
+     *
+     * @ORM\Column(name="difficulty", type="string", length=255, nullable=false)
      */
     private $difficulty;
 
     /**
-     * @ORM\Column(type="integer")
+     * @var int
+     *
+     * @ORM\Column(name="try", type="integer", nullable=false)
      */
     private $try;
 
     /**
-     * @ORM\Column(type="integer")
+     * @var int
+     *
+     * @ORM\Column(name="numplayers", type="integer", nullable=false)
      */
     private $numplayers;
 
@@ -106,4 +120,6 @@ class Highscore
 
         return $this;
     }
+
+
 }
