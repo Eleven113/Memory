@@ -73,12 +73,23 @@ class HighscoreDisplay {
 
     getScore($numcards, $numplayers) {
         $.get('/Memory/public/index.php/score/getscore/' + $numcards + '/' + $numplayers, function (data) {
-            document.querySelector("tbody").innerHTML = '';
-            for (let i = 0; i <= data.length; i++) {
+            this.tbody = document.querySelector("tbody")
+            this.tbody.innerHTML = '';
+
+            if ( data.length > 0 ){
+                for (let i = 0; i <= data.length-1; i++) {
+                    console.log(i);
+                    console.log(data[i]);
+                    this.tr = document.createElement('tr');
+                    this.tr.innerHTML = '<td>' + data[i].player + '</td><td>' + data[i].try + '</td><td>' + data[i].time + '</td>';
+                    this.tbody.append(this.tr);
+                }
+            } else {
                 this.tr = document.createElement('tr');
-                this.tr.innerHTML = '<td>' + data[i].player + '</td><td>' + data[i].try + '</td><td>' + data[i].time + '</td>';
-                document.querySelector("tbody").append(this.tr);
+                this.tr.innerHTML = '<td colspan="100%">' + "Il n'y a pas de score pour ce mode " + '</td>';
+                this.tbody.append(this.tr);
             }
+
         });
     }
 }

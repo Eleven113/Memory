@@ -6,7 +6,7 @@
 
 {% block content %}
 
-    <nav>
+    <div>
         <div class="text-center m-5"><a href="{{ url('app_newgame') }}" class="menu-link">Nouvelle Partie</a></div>
         <div id="highscore" class="col-8 offset-2">
             <h3 class="text-center mb-5">Meilleurs scores</h3>
@@ -32,18 +32,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for score in highscore %}
+                       {% if highscore is defined %}
+
+                            {% for score in highscore %}
+                                <tr>
+                                    <td>{{ score.player }}</td>
+                                    <td>{{ score.try }}</td>
+                                    <td>{{ score.time }}</td>
+                                </tr>
+                            {% endfor %}
+
+                        {% else %}
                             <tr>
-                                <td>{{ score.player }}</td>
-                                <td>{{ score.try }}</td>
-                                <td>{{ score.time }}</td>
+                                <td colspan="100%">Il n'y a pas de score pour ce mode</td>
                             </tr>
-                        {% endfor %}
+                        {% endif %}
                     </tbody>
                 </table>
             </div>
         </div>
-    </nav>
+    </div>
 
 {% endblock %}
 

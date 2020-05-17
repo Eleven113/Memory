@@ -8,3 +8,6 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
+.env
+src/Migrations/Version20200517153246.php
+.env
