@@ -17,6 +17,7 @@ class ScoreController extends AbstractController
 {
 
     /**
+     * Route pour afficher les meilleurs scores
      * @Route("/", name="app_score")
      */
     public function index()
@@ -25,6 +26,7 @@ class ScoreController extends AbstractController
     }
 
     /**
+     * Route pour récupérer les meilleurs scores
      * @Route("/getscore/{difficulty}/{numplayers}", name="app_getscore")
      */
     public function getscore($difficulty, $numplayers)
@@ -53,6 +55,7 @@ class ScoreController extends AbstractController
     }
 
     /**
+     * Route pour enregistrer un nouveau score
      * @Route("/setscore/", name="app_setscore")
      */
     public function setscore(Request $request)

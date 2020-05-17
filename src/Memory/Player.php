@@ -6,6 +6,11 @@ namespace App\Memory;
 
 use JsonSerializable;
 
+/**
+ * Un joueur
+ * Class Player
+ * @package App\Memory
+ */
 class Player implements JsonSerializable
 {
     private $matchedCards;
@@ -24,12 +29,17 @@ class Player implements JsonSerializable
     }
 
     /**
+     * Incrément le nom d'essais
      * @return void
      */
     public function updateCount() {
         $this->tryCount++;
     }
 
+    /**
+     * Ajoute une carte à l'ensemble des paires déjà trouvées
+     * @param Card $card
+     */
     public function addMatchedCard(Card $card) {
         array_push($this->matchedCards, $card);
     }

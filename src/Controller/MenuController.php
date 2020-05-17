@@ -11,6 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class MenuController extends AbstractController
 {
     /**
+     * Route pour afficher le menu
      * @Route("/", name="app_menu")
      */
     public function index()

@@ -1,0 +1,14 @@
+NFE 114 - Memory - Marine MINARD
+
+Jeu de Memory en ligne
+
+Fonctionnalités :
+- 1 à 2 joueurs sur le même écran
+- 3 modes de difficulté
+- sauvegarde et affichage des meilleurs scores
+
+Installation du projet :
+1- Exécuter la commande "composer install" pour installer les dépendances
+2- Modifier l'avant dernière ligne du fichier .env à la racine du projet pour la connexion à la base de données (MySql version 8)
+3- Exécuter la commande php bin/console doctrine:migrations:diff
+4- Exécuter la commande php bin/console doctrine:migrations:migrate

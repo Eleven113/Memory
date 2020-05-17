@@ -6,6 +6,11 @@ namespace App\Memory;
 
 use JsonSerializable;
 
+/**
+ * Une réponse à une demande de retournement de carte
+ * Class PlayResponse
+ * @package App\Memory
+ */
 class PlayResponse implements JsonSerializable
 {
     /**

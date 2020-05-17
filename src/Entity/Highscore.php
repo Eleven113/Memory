@@ -24,21 +24,21 @@ class Highscore
     /**
      * @var string
      *
-     * @ORM\Column(name="player", type="string", length=255, nullable=false)
+     * @ORM\Column(name="player", type="string", length=50, nullable=false)
      */
     private $player;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="time", type="string", length=255, nullable=false)
+     * @ORM\Column(name="time", type="string", length=8, nullable=false)
      */
     private $time;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="difficulty", type="string", length=255, nullable=false)
+     * @ORM\Column(name="difficulty", type="string", length=50, nullable=false)
      */
     private $difficulty;
 

@@ -3,7 +3,11 @@
 
 namespace App\Memory;
 
-
+/**
+ * Une partie de Memory
+ * Class Memory
+ * @package App\Memory
+ */
 class Memory
 {
     private $difficulty;
@@ -19,7 +23,7 @@ class Memory
 
     /**
      * Memory constructor.
-     * @param int $size
+     * @param string $difficulty
      * @param string[] $names
      * @param string $theme
      */
@@ -53,6 +57,7 @@ class Memory
     }
 
     /**
+     * Génère les cartes
      * @param int $size
      * @return object
      */
@@ -68,7 +73,6 @@ class Memory
         }
         shuffle($selectedSymbols);
 
-        // Add
         $cards = new \ArrayObject();
         foreach($selectedSymbols as $symbol ){
             $card = new Card($symbol);
@@ -79,6 +83,7 @@ class Memory
     }
 
     /**
+     * Change de joueur
      * @return void
      */
     private function nextPlayer() {
@@ -89,6 +94,7 @@ class Memory
     }
 
     /**
+     * Joue la $i-ème carte
      * @param int $i
      * @return PlayResponse
      */
@@ -105,6 +111,7 @@ class Memory
     }
 
     /**
+     * Détermine si la paire constituée correspond ou non, puis passe au tour suivant
      * @param int $i
      * @return PlayResponse
      */
@@ -128,6 +135,9 @@ class Memory
         return $playResponse;
     }
 
+    /**
+     * Masque la paire de cartes si elles ne correspondent pas
+     */
     public function hideCurrentPair() {
         $this->currentPair[0]->setStatus("hidden");
         $this->currentPair[1]->setStatus("hidden");
@@ -135,6 +145,7 @@ class Memory
     }
 
     /**
+     * Vérifie si le jeu est terminé
      * @return void
      */
     private function checkGameOver()
@@ -150,6 +161,7 @@ class Memory
     }
 
     /**
+     * Détermine le gagnant de la partie
      * @return void
      */
     private function setWinner()

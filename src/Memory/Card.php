@@ -6,6 +6,11 @@ namespace App\Memory;
 
 use JsonSerializable;
 
+/**
+ * Class Card
+ * Une carte du jeu
+ * @package App\Memory
+ */
 class Card implements JsonSerializable
 {
     private $symbol;
@@ -13,7 +18,7 @@ class Card implements JsonSerializable
 
     /**
      * Card constructor.
-     * @param $symbol
+     * @param string $symbol
      */
     public function __construct($symbol)
     {
@@ -22,7 +27,7 @@ class Card implements JsonSerializable
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getSymbol()
     {
@@ -30,7 +35,7 @@ class Card implements JsonSerializable
     }
 
     /**
-     * @param mixed $symbol
+     * @param string $symbol
      */
     public function setSymbol($symbol)
     {

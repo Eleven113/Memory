@@ -30,6 +30,7 @@ class GameController extends AbstractController
     }
 
     /**
+     * Route pour afficher le formulaire de création d'une partie
      * @Route("/newgame", name="app_newgame")
      */
     public function index()
@@ -38,6 +39,7 @@ class GameController extends AbstractController
     }
 
     /**
+     * Route pour afficher le jeu
      * @Route("/", name="app_game")
      * @param Request $request
      * @return Response
@@ -65,6 +67,7 @@ class GameController extends AbstractController
     }
 
     /**
+     * Route pour retourner une carte
      * @Route("/play/{i}", name="app_play", requirements= { "i"  = "\d+"})
      * @param $i
      * @return Response
