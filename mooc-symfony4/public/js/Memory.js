@@ -8,7 +8,7 @@ class Memory {
         this.spanWinnerMatchedCards = document.getElementById("winner_matched-cards");
         this.spanWinnerTry = document.getElementById("winner_try");
         this.spanWinnerTime = document.getElementById("winner_time");
-        this.spanTimer = document.getElementById("gameinfo_time-numb");
+        this.spanTimer = document.getElementById("gameinfo_time-num");
         this.events();
         this.isRequesting = false ;
         this.currentPair = [];
@@ -28,7 +28,6 @@ class Memory {
 
             this.id = event.target.id.split('_')[1];
             $.get('/Memory/mooc-symfony4/public/index.php/game/play/' + this.id, function (data) {
-                console.log(data);
                 document.getElementById("player_1_try-num").innerText = data.players[0].tryCount;
                 if (data.players.length === 2) {
                     document.getElementById("player_2_try-num").innerText = data.players[1].tryCount;
@@ -62,7 +61,6 @@ class Memory {
                 }
 
                 if (data.isGameOver === true) {
-                    console.log(data.players.length);
                     new SetScore(data.winner.name, this.spanTimer.textContent, data.winner.tryCount, data.difficulty, data.players.length);
 
                     this.spanWinnerName.textContent = data.winner.name;
@@ -76,8 +74,6 @@ class Memory {
 
                 this.isRequesting = false;
             }.bind(this));
-        } else {
-            console.log("Requête en cours");
         }
     }
 }

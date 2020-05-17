@@ -1,13 +1,12 @@
-class NewgamePlayerdisplay {
+class NewGamePlayerDisplay {
     constructor(){
         this.divPlayer2 = document.getElementById('player2');
-        this.select = document.getElementById('newgame_playernumb');
+        this.select = document.getElementById('newgame_playernum');
         this.event();
     }
 
     displayDiv(){
         this.selectValue = parseInt(this.select.options[this.select.selectedIndex].value);
-        console.log(this.selectValue);
 
         if ( this.selectValue === 2) {
             this.divPlayer2.className = "form-group mt-3";
@@ -22,4 +21,4 @@ class NewgamePlayerdisplay {
     }
 }
 
-let newgamePlayerdisplay = new NewgamePlayerdisplay();
+let newgamePlayerdisplay = new NewGamePlayerDisplay();
