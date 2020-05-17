@@ -39,6 +39,12 @@
     justify-content: space-around;
 }
 
+#hs_numplayers{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
 #players{
     font-size: 2vw;
 }
@@ -86,4 +92,8 @@
     top: 3%;
     left: 94%;
     font-size: 1.8vw;
+}
+
+.hs_menu {
+    cursor: pointer;
 }
