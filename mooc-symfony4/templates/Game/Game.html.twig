@@ -14,7 +14,7 @@
         {% elseif theme == 'music' %}
             Instruments de musique
         {% else %}
-            {{ "<thème inconnu>"|e }}
+            {{ "Thème inconnu"|e }}
         {% endif %}
         - Mode
         {% if size == 6 %}
@@ -24,24 +24,24 @@
         {% elseif size == 18 %}
             difficile
         {% else %}
-            {{ "<difficulté inconnue>"|e }}
+            {{ "de difficulté inconnu"|e }}
         {% endif %}
     </h3>
 
     <div id="players" class="d-flex flex-row justify-content-around col-12 mb-3">
         {% for player in players %}
-            <div id="player{{ loop.index }}" class="col-3 d-flex flex-row">
+            <div id="player{{ loop.index }}_info" class="col-3 d-flex flex-row">
                 <div id="player_{{ loop.index }}_ico" class="col-2"></div>
                 <div id="player_{{ loop.index }}_name" class="col-10">{{ player.name }}</div>
+            </div>
+            <div id="player{{ loop.index }}_trys" class="text-center col-3">
+                <span id="player_{{ loop.index }}_try-txt">Essai(s) : </span>
+                <span id="player_{{ loop.index }}_try-num"> 0 </span>
             </div>
         {% endfor %}
     </div>
 
     <div id="gameinfo" class="d-flex flex-row justify-content-center mb-3">
-        <div id="gameinfo_try" class="text-center col-3">
-            <span id="gameinfo_try-txt">Essai(s) : </span>
-            <span id="gameinfo_try-numb"> 0 </span>
-        </div>
         <div id="gameinfo_time" class="text-center col-3">
             <span id="gameinfo_time-txt">Temps : </span>
             <span id="gameinfo_time-numb"> 00:00 </span>
@@ -59,9 +59,8 @@
     <div id="modal_winner">
         <div id="modal_content">
             <div id="modal_trophy"><i class="fas fa-trophy"></i></div>
-            <div id="winner_name"></div>
-            <div>Félicitations , tu remportes cette partie !</div>
-            <div><span id="winner_try"></span> essais en <span id="winner_time"></span></div>
+            <div>Félicitations <span id="winner_name"></span>, tu remportes cette partie !</div>
+            <div>Tu as trouvé <span id="winner_matched-cards"></span> paires sur tes <span id="winner_try"></span> essais en <span id="winner_time"></span></div>
             <div class="mt-5"><a href="{{ url('app_newgame') }}" class="menu-link">Nouvelle Partie</a></div>
         </div>
     </div>
