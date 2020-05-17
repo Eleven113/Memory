@@ -59,7 +59,7 @@ class Highscore
         return $this;
     }
 
-    public function getTime(): ?int
+    public function getTime(): ?string
     {
         return $this->time;
     }
